@@ -1,13 +1,13 @@
-package com.untilwed.studyingjpa;
+package com.untilwed.studyingjpa.model.ch2_model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Entity // 테이블 매핑 객체
-@Table(name = "MEMBER") // 매핑할 테이블 정보
-public class Member {
+//@Entity // 테이블 매핑 객체
+@Table(name = "MEMBER_C2") // 매핑할 테이블 정보
+public class MemberC2 {
 
     @Id // 식별자 필드
     @Column(name = "ID")

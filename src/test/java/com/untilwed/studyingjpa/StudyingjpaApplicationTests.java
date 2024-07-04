@@ -1,5 +1,6 @@
 package com.untilwed.studyingjpa;
 
+import com.untilwed.studyingjpa.model.ch2_model.MemberC2;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -41,7 +42,7 @@ class StudyingjpaApplicationTests {
 	private static void logic(EntityManager em){
 
 		String id = "id1";
-		Member member = new Member();
+		MemberC2 member = new MemberC2();
 		member.setId(id);
 		member.setUsername("지한");
 		member.setAge(2);
@@ -57,12 +58,12 @@ class StudyingjpaApplicationTests {
 
 		//한건 조회
 		//1차 캐시에서 우선적으로 @Id로 데이터베이스의 식별키값을 기반으로해서 찾는다.
-		Member findMember = em.find(Member.class, id);
+		MemberC2 findMember = em.find(MemberC2.class, id);
 		System.out.println("findMember=" + findMember.getUsername() + ", age=" + findMember.getAge());
 
 		//목록 조회 -- JPQL은 데이터베이스를 전혀 알지 못한다!
 		// jpql을 통한 쿼리로 자동으로 플러싱 된다. (대부분 FlushModeType.COMMIT으로 커밋할때만 플러시를 한다.)
-		List<Member> members = em.createQuery("select m from Member m", Member.class).getResultList();
+		List<MemberC2> members = em.createQuery("select m from MemberC2 m", MemberC2.class).getResultList();
 		System.out.println("members.size=" + members.size());
 
 		//삭제

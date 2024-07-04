@@ -1,4 +1,4 @@
-package com.untilwed.config;
+package com.untilwed.studyingjpa.config;
 
 import jakarta.persistence.EntityManager;
 import org.springframework.context.annotation.Bean;

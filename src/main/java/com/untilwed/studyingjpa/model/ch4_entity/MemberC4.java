@@ -1,4 +1,4 @@
-package com.untilwed.studyingjpa.model.ch4_model;
+package com.untilwed.studyingjpa.model.ch4_entity;
 
 
 import jakarta.persistence.*;

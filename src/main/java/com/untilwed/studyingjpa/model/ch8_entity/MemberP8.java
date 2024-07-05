@@ -1,23 +1,34 @@
-package com.untilwed.studyingjpa.model.ch6;
+package com.untilwed.studyingjpa.model.ch8_entity;
+
+
 
 import jakarta.persistence.*;
 
-@Entity
-public class DeliveryP6 {
+import java.util.ArrayList;
+import java.util.List;
 
-    @Id @GeneratedValue
-    @Column(name = "DELIVERY_ID")
+/**
+ * Created by holyeye on 2014. 3. 11..
+ */
+
+@Entity
+public class MemberP8 extends BaseEntityP8 {
+
+    @Id
+    @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
 
-    @OneToOne(mappedBy = "delivery")
-    private OrderP6 order;
+    private String name;
 
     private String city;
     private String street;
     private String zipcode;
 
-    @Enumerated(EnumType.STRING)
-    private DeliveryStatusP6 status;
+    @OneToMany(mappedBy = "member")
+    private List<OrderP8> orders = new ArrayList<OrderP8>();
+
+    //Getter, Setter
 
     public Long getId() {
         return id;
@@ -27,12 +38,12 @@ public class DeliveryP6 {
         this.id = id;
     }
 
-    public OrderP6 getOrder() {
-        return order;
+    public String getName() {
+        return name;
     }
 
-    public void setOrder(OrderP6 order) {
-        this.order = order;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCity() {
@@ -59,11 +70,11 @@ public class DeliveryP6 {
         this.zipcode = zipcode;
     }
 
-    public DeliveryStatusP6 getStatus() {
-        return status;
+    public List<OrderP8> getOrders() {
+        return orders;
     }
 
-    public void setStatus(DeliveryStatusP6 status) {
-        this.status = status;
+    public void setOrders(List<OrderP8> orders) {
+        this.orders = orders;
     }
 }

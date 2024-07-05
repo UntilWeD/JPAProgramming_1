@@ -1,4 +1,4 @@
-package com.untilwed.studyingjpa.model.ch5_model;
+package com.untilwed.studyingjpa.model.ch5_entity;
 
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;

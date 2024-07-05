@@ -1,6 +1,6 @@
 package com.untilwed.studyingjpa.model.ch6;
 
-import com.untilwed.studyingjpa.model.ch5_model.pratice.OrderStatus;
+import com.untilwed.studyingjpa.model.ch5_entity.pratice.OrderStatus;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;

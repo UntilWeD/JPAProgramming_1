@@ -1,6 +1,6 @@
 package com.untilwed.studyingjpa;
 
-import com.untilwed.studyingjpa.model.ch2_model.MemberC2;
+import com.untilwed.studyingjpa.model.ch2_entity.MemberC2;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;

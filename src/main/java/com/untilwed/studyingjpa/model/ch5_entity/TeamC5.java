@@ -1,10 +1,9 @@
-package com.untilwed.studyingjpa.model.ch5_model;
+package com.untilwed.studyingjpa.model.ch5_entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;

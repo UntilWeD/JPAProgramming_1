@@ -1,4 +1,4 @@
-package com.untilwed.studyingjpa.model.ch4_model.pratice;
+package com.untilwed.studyingjpa.model.ch5_entity.pratice;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -7,7 +7,7 @@ import lombok.Data;
 
 //@Entity
 @Data
-public class Item {
+public class ItemP5 {
     
     
     @Id @GeneratedValue

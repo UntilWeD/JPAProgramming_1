@@ -1,7 +1,7 @@
 package com.untilwed.studyingjpa.Ch5Test;
 
-import com.untilwed.studyingjpa.model.ch5_model.MemberC5;
-import com.untilwed.studyingjpa.model.ch5_model.TeamC5;
+import com.untilwed.studyingjpa.model.ch5_entity.MemberC5;
+import com.untilwed.studyingjpa.model.ch5_entity.TeamC5;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

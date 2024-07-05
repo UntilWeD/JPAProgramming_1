@@ -1,23 +1,23 @@
-package com.untilwed.studyingjpa.model.ch6;
+package com.untilwed.studyingjpa.model.ch8_entity;
 
 import jakarta.persistence.*;
 
 @Entity
-public class DeliveryP6 {
+public class DeliveryP8 {
 
     @Id @GeneratedValue
     @Column(name = "DELIVERY_ID")
     private Long id;
 
     @OneToOne(mappedBy = "delivery")
-    private OrderP6 order;
+    private OrderP8 order;
 
     private String city;
     private String street;
     private String zipcode;
 
     @Enumerated(EnumType.STRING)
-    private DeliveryStatusP6 status;
+    private DeliveryStatusP8 status; //ENUM [READY(준비), COMP(배송)]
 
     public Long getId() {
         return id;
@@ -27,11 +27,11 @@ public class DeliveryP6 {
         this.id = id;
     }
 
-    public OrderP6 getOrder() {
+    public OrderP8 getOrder() {
         return order;
     }
 
-    public void setOrder(OrderP6 order) {
+    public void setOrder(OrderP8 order) {
         this.order = order;
     }
 
@@ -59,11 +59,11 @@ public class DeliveryP6 {
         this.zipcode = zipcode;
     }
 
-    public DeliveryStatusP6 getStatus() {
+    public DeliveryStatusP8 getStatus() {
         return status;
     }
 
-    public void setStatus(DeliveryStatusP6 status) {
+    public void setStatus(DeliveryStatusP8 status) {
         this.status = status;
     }
 }

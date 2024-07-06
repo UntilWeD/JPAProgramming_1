@@ -1,6 +1,6 @@
-package com.untilwed.studyingjpa.model.ch8_entity.item;
+package com.untilwed.studyingjpa.model.ch9_entity.item;
 
-import com.untilwed.studyingjpa.model.ch8_entity.CategoryP8;
+import com.untilwed.studyingjpa.model.ch7_entity.pratice.CategoryP7;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -9,18 +9,18 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "DTYPE")
-public abstract class ItemP8 {
+public class ItemP9 {
 
     @Id @GeneratedValue
     @Column(name = "ITEM_ID")
     private Long id;
 
-    private String name;        //이름
-    private int price;          //가격
+    private String name;   // 이름
+    private int price;   //가격
     private int stockQuantity;  //재고수량
 
     @ManyToMany(mappedBy = "items")
-    private List<CategoryP8> categories = new ArrayList<CategoryP8>();
+    private List<CategoryP7> categories = new ArrayList<CategoryP7>();
 
     public Long getId() {
         return id;
@@ -54,20 +54,11 @@ public abstract class ItemP8 {
         this.stockQuantity = stockQuantity;
     }
 
-    public List<CategoryP8> getCategories() {
+    public List<CategoryP7> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<CategoryP8> categories) {
+    public void setCategories(List<CategoryP7> categories) {
         this.categories = categories;
-    }
-
-    @Override
-    public String toString() {
-        return "Item{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                '}';
     }
 }

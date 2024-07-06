@@ -1,23 +1,25 @@
-package com.untilwed.studyingjpa.model.ch6;
+package com.untilwed.studyingjpa.model.ch7_entity.pratice;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
-public class DeliveryP6 {
+public class MemberP7 extends BaseEntityP7{
 
     @Id @GeneratedValue
-    @Column(name = "DELIVERY_ID")
+    @Column(name = "MEMBER_ID")
     private Long id;
 
-    @OneToOne(mappedBy = "delivery")
-    private OrderP6 order;
+    private String name;
 
     private String city;
     private String street;
     private String zipcode;
 
-    @Enumerated(EnumType.STRING)
-    private DeliveryStatusP6 status;
+    @OneToMany(mappedBy = "member")
+    private List<OrderP7> orders = new ArrayList<OrderP7>();
 
     public Long getId() {
         return id;
@@ -27,12 +29,12 @@ public class DeliveryP6 {
         this.id = id;
     }
 
-    public OrderP6 getOrder() {
-        return order;
+    public String getName() {
+        return name;
     }
 
-    public void setOrder(OrderP6 order) {
-        this.order = order;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCity() {
@@ -59,11 +61,11 @@ public class DeliveryP6 {
         this.zipcode = zipcode;
     }
 
-    public DeliveryStatusP6 getStatus() {
-        return status;
+    public List<OrderP7> getOrders() {
+        return orders;
     }
 
-    public void setStatus(DeliveryStatusP6 status) {
-        this.status = status;
+    public void setOrders(List<OrderP7> orders) {
+        this.orders = orders;
     }
 }

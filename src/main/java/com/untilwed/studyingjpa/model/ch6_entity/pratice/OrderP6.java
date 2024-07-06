@@ -1,4 +1,4 @@
-package com.untilwed.studyingjpa.model.ch6;
+package com.untilwed.studyingjpa.model.ch6_entity.pratice;
 
 import com.untilwed.studyingjpa.model.ch5_entity.pratice.OrderStatus;
 import jakarta.persistence.*;
@@ -29,7 +29,7 @@ public class OrderP6 {
     private Date orderDate; //주문시간
 
     @Enumerated(EnumType.STRING)
-    private OrderStatus //주문상태
+    private OrderStatus orderStatus; //주문상태
 
     //==연관관계 메소드==//
     public void setMember(MemberP6 member){

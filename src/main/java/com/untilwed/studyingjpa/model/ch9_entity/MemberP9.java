@@ -19,7 +19,12 @@ public class MemberP9 extends BaseEntityP9 {
     @Column(name = "MEMBER_ID")
     private Long id;
 
-    private String name;
+    private String username;
+    private String age;
+
+    @ManyToOne
+    @JoinColumn
+    private TeamP9 team;
 
 //    private String city;
 //    private String street;
@@ -48,11 +53,11 @@ public class MemberP9 extends BaseEntityP9 {
     }
 
     public String getName() {
-        return name;
+        return username;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.username = name;
     }
 
     public List<OrderP9> getOrders() {
@@ -61,5 +66,13 @@ public class MemberP9 extends BaseEntityP9 {
 
     public void setOrders(List<OrderP9> orders) {
         this.orders = orders;
+    }
+
+    public TeamP9 getTeam() {
+        return team;
+    }
+
+    public void setTeam(TeamP9 team) {
+        this.team = team;
     }
 }

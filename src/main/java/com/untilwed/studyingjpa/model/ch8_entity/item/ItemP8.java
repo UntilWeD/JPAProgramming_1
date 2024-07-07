@@ -1,7 +1,7 @@
-package com.untilwed.studyingjpa.model.ch9_entity.item;
+package com.untilwed.studyingjpa.model.ch8_entity.item;
 
 import com.untilwed.studyingjpa.model.ch7_entity.pratice.CategoryP7;
-import com.untilwed.studyingjpa.model.ch9_entity.CategoryP9;
+import com.untilwed.studyingjpa.model.ch8_entity.CategoryP8;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "DTYPE")
-public class ItemP9 {
+public class ItemP8 {
 
     @Id @GeneratedValue
     @Column(name = "ITEM_ID")
@@ -21,7 +21,7 @@ public class ItemP9 {
     private int stockQuantity;  //재고수량
 
     @ManyToMany(mappedBy = "items")
-    private List<CategoryP9> categories = new ArrayList<CategoryP9>();
+    private List<CategoryP8> categories = new ArrayList<CategoryP8>();
 
     public Long getId() {
         return id;
@@ -55,11 +55,11 @@ public class ItemP9 {
         this.stockQuantity = stockQuantity;
     }
 
-    public List<CategoryP9> getCategories() {
+    public List<CategoryP8> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<CategoryP9> categories) {
+    public void setCategories(List<CategoryP8> categories) {
         this.categories = categories;
     }
 }

@@ -29,6 +29,9 @@ public class OrderP9 {
     @Enumerated(EnumType.STRING)
     private OrderStatusP9 status;
 
+    @Embedded
+    private AddressP9 address;
+
     public void setMember(MemberP9 member) {
         this.member = member;
         member.getOrders().add(this);

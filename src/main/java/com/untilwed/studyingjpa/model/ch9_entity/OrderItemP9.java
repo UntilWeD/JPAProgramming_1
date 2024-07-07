@@ -1,6 +1,7 @@
 package com.untilwed.studyingjpa.model.ch9_entity;
 
 import com.untilwed.studyingjpa.model.ch8_entity.item.ItemP8;
+import com.untilwed.studyingjpa.model.ch9_entity.item.ItemP9;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,7 +14,7 @@ public class OrderItemP9 {
 
     @ManyToOne(fetch = FetchType.LAZY) //**
     @JoinColumn(name = "ITEM_ID")
-    private ItemP8 item;      //주문 상품
+    private ItemP9 item;      //주문 상품
 
     @ManyToOne(fetch = FetchType.LAZY) //**
     @JoinColumn(name = "ORDER_ID")
@@ -31,11 +32,11 @@ public class OrderItemP9 {
         this.id = id;
     }
 
-    public ItemP8 getItem() {
+    public ItemP9 getItem() {
         return item;
     }
 
-    public void setItem(ItemP8 item) {
+    public void setItem(ItemP9 item) {
         this.item = item;
     }
 

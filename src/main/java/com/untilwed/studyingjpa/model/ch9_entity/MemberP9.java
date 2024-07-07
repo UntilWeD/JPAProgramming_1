@@ -11,7 +11,12 @@ import java.util.List;
  * Created by holyeye on 2014. 3. 11..
  */
 
+
 @Entity
+@NamedQuery(            //Named Query 적용
+        name = "MemberP9.findByUsername",
+        query="select m from MemberP9 m where m.username = :username"
+)
 public class MemberP9 extends BaseEntityP9 {
 
     @Id

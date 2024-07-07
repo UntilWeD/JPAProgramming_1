@@ -4,6 +4,7 @@ import com.untilwed.studyingjpa.model.ch9_entity.AddressP9;
 import com.untilwed.studyingjpa.model.ch9_entity.MemberP9;
 import com.untilwed.studyingjpa.model.ch9_entity.TeamP9;
 import com.untilwed.studyingjpa.model.ch9_entity.UserDTO;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
@@ -112,7 +113,7 @@ public class TestRepository {
     //Inner JOIN -> 복습필요
     public void usingInnerJoin(){
         String teamName = "팀A";
-        String query = "SELECT m FROM Member m INNER JOIN m.team t "
+        String query = "SELECT m FROM MemberP9 m INNER JOIN m.team t "
                 + "WHERE t.name = :teamName";
 
         List<MemberP9> members = em.createQuery(query, MemberP9.class)
@@ -122,7 +123,7 @@ public class TestRepository {
 
     //Fetch JOIN
     public void usingFetchJoin(){
-        String jpql = "select m from Member m join fetch m.team";
+        String jpql = "select m from MemberP9 m join fetch m.team";
 
         List<MemberP9> members = em.createQuery(jpql, MemberP9.class).getResultList();
 
@@ -135,7 +136,7 @@ public class TestRepository {
 
     //Collection Fetch Join
     public void usingCollectionFetchJoin(){
-        String jpql = "SELECT t from Team t join fetch t.members where t.name = '팀A'";
+        String jpql = "SELECT t from TeamP9 t join fetch t.members where t.name = '팀A'";
         List<TeamP9> teams = em.createQuery(jpql, TeamP9.class).getResultList();
 
         for(TeamP9 team : teams){
@@ -155,6 +156,27 @@ public class TestRepository {
     // 페치조인은 객체 그래프를 유지할 때 사용하면 효과적이다. 반면에 여러 테이블을 조인해서 엔티티가 가진 모양이 아닌
     // 전혀 다른 결과를 내야 한다면 억지로 페치 조인을 사용하기 보다는 여러 테이블에서 필요한 필드들만 조회해서 DTO로
     // 반환하는 것이 더 효과적일 수 있다.
+
+    //엔티티 직접 사용 시 키값 사용
+    public void usingEntity(){
+        MemberP9 member = new MemberP9();
+
+        String qlString = "select m from MemberP9 m where m = :member";
+        List resultList = em.createQuery(qlString)
+                .setParameter("member", member)
+                .getResultList();
+    }
+
+
+    //NamedQuery 사용
+    //말 그대로 쿼리에 이름을 부여해서 사용하는 방법이다.
+    //NamedQueries로 더 많은 쿼리들을 만들 수 있다. 그렇지만 그냥 XML에서 사용하는 것이 현실적인 대안이다.
+    //(만약 XML파일을 사용한다면 android.properties에 선언을 해야한다.
+    public void usingNamedQuery(){
+        List<MemberP9> resultList = em.createNamedQuery("MemberP9.findByUsername", MemberP9.class)
+                .setParameter("username", "회원1")
+                .getResultList();
+    }
 
 
 }

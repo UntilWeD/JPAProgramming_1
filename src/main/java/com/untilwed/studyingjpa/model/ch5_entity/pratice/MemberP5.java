@@ -25,7 +25,53 @@ public class MemberP5 {
     private String zipcode;
 
     @OneToMany(mappedBy = "member")
-    private List<OrderP5> ordersP5 = new ArrayList<>();
+    private List<OrderP5> orders = new ArrayList<>();
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public List<OrderP5> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<OrderP5> orders) {
+        this.orders = orders;
+    }
 }

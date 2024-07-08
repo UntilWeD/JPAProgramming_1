@@ -3,12 +3,14 @@ package com.untilwed.studyingjpa.model.ch9_entity.item;
 import com.untilwed.studyingjpa.model.ch7_entity.pratice.CategoryP7;
 import com.untilwed.studyingjpa.model.ch9_entity.CategoryP9;
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@NoArgsConstructor
 @DiscriminatorColumn(name = "DTYPE")
 public class ItemP9 {
 
@@ -22,6 +24,8 @@ public class ItemP9 {
 
     @ManyToMany(mappedBy = "items")
     private List<CategoryP9> categories = new ArrayList<CategoryP9>();
+
+
 
     public Long getId() {
         return id;

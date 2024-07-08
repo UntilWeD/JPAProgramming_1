@@ -25,4 +25,43 @@ public class OrderItemP5 {
     private int orderPrice;
     private int count;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public ItemP5 getItemP5() {
+        return itemP5;
+    }
+
+    public void setItemP5(ItemP5 itemP5) {
+        this.itemP5 = itemP5;
+    }
+
+    public OrderP5 getOrder() {
+        return order;
+    }
+
+    public void setOrder(OrderP5 order) {
+        this.order = order;
+    }
+
+    public int getOrderPrice() {
+        return orderPrice;
+    }
+
+    public void setOrderPrice(int orderPrice) {
+        this.orderPrice = orderPrice;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 }

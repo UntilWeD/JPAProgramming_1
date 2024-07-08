@@ -4,10 +4,9 @@ import com.untilwed.studyingjpa.model.ch9_entity.AddressP9;
 import com.untilwed.studyingjpa.model.ch9_entity.MemberP9;
 import com.untilwed.studyingjpa.model.ch9_entity.TeamP9;
 import com.untilwed.studyingjpa.model.ch9_entity.UserDTO;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Query;
-import jakarta.persistence.TypedQuery;
+import com.untilwed.studyingjpa.model.ch9_entity.item.ItemP9;
+import com.untilwed.studyingjpa.model.ch9_entity.item.QItemP9;
+import jakarta.persistence.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,6 +17,7 @@ import java.util.List;
 @Repository
 @RequiredArgsConstructor
 public class TestRepository {
+
 
 
     private final EntityManager em;
@@ -178,5 +178,71 @@ public class TestRepository {
                 .getResultList();
     }
 
+
+    //네이티브 SQL//
+    //네이티브 SQL로 SQL만 직접 사용할 뿐이지 나머지는 JPQL을 사용할 떄와 같다.
+    //즉 조회한 엔티티도 영속성 컨텍스트에서 관리된다.
+    //아마 MyBatis가 있기 때문에 쓰지않을것 같다.
+    public void usingNativeSql(){
+        String sql =
+                "SELECT ID, AGE, NAME, TEAM_ID " +
+                        "FROM MEMBER WHERE AGE > ?";
+
+        Query nativeQuery = em.createNativeQuery(sql, MemberP9.class)
+                .setParameter(1, 20);
+
+        List<MemberP9> resultList = nativeQuery.getResultList();
+    }
+
+    //스토어드 프로시저 (순서기반)
+    public void usingStoredProcedure(){
+
+        StoredProcedureQuery spq =
+                em.createStoredProcedureQuery("proc_multiply");
+        spq.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
+        spq.registerStoredProcedureParameter(2, Integer.class, ParameterMode.OUT);
+
+        spq.setParameter(1, 100);
+        spq.execute();
+
+        Integer out = (Integer) spq.getOutputParameterValue(2);
+        System.out.println("out = " + out);
+    }
+
+    // 파라미터 이름
+    // 순서보단 이름으로 명시하는게 더 확실할 것이다.
+    public void usingStoreProcedureWithName(){
+        StoredProcedureQuery spq =
+                em.createStoredProcedureQuery("proc_multiply");
+
+        spq.registerStoredProcedureParameter("inParam", Integer.class, ParameterMode.IN);
+        spq.registerStoredProcedureParameter("outParam", Integer.class, ParameterMode.OUT);
+
+        spq.setParameter("inParam", 100);
+        spq.execute();
+
+        Integer out = (Integer) spq.getOutputParameterValue("outParam");
+        System.out.println("out = " + out); // 결과 = 200
+    }
+
+    // 벌크 연산
+    // 한번에 수정하거나 삭제하여 시간을 줄일 수 있다.
+    //!주의점!//
+    //벌크연산이 영속성 컨텍스트를 무시하고 데이터베이스에 직접 쿼리하기에 주의하자.(458p 예제참고)
+    public void usingBulkOperation(){
+        String qlString =
+                "update ItemP9 i " +
+                        "set i.price = i.price * 1.1 " +
+                        "where i.stockQuantity < :stockAmount";
+
+        int resultCount = em.createQuery(qlString)
+                .setParameter("stockAomunt", 10)
+                .executeUpdate();
+
+        ItemP9 item = em.find(ItemP9.class, "1");
+
+        em.refresh(item);
+
+    }
 
 }

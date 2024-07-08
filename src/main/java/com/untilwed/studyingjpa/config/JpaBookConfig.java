@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 @RequiredArgsConstructor
 public class JpaBookConfig {
 
-    private final EntityManager em;
+
 
 
 
